@@ -8,5 +8,5 @@ type Usuario struct {
 	Ciudad          string
 	Estado          string
 	Cp              string
-	Fechanacimiento string
+	FechaNacimiento string
 }

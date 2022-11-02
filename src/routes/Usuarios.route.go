@@ -12,4 +12,5 @@ func RoutesUsuarios(app *fiber.App) {
 	route.Get("/", controllers.Usuarios_GetAll)
 	route.Put("/:id", controllers.Usuarios_Edit)
 	route.Delete("/:id", controllers.Usuarios_Delete)
+	route.Post("/", controllers.Usuarios_Add)
 }

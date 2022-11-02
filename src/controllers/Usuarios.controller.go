@@ -54,3 +54,20 @@ func Usuarios_Delete(context *fiber.Ctx) error {
 		"status": fiber.StatusOK,
 	})
 }
+
+func Usuarios_Add(context *fiber.Ctx) error {
+	db := config.Connection()
+	var usuario models.Usuario
+	context.BodyParser(&usuario)
+	db.Exec("INSERT INTO Usuario(Nombre, Apellidos, Direccion, Ciudad, Estado, Cp, FechaNacimiento) VALUES(?,?,?,?,?,?,?)",
+		usuario.Nombre,
+		usuario.Apellidos,
+		usuario.Direccion,
+		usuario.Ciudad,
+		usuario.Estado,
+		usuario.Cp,
+		usuario.FechaNacimiento)
+	return context.JSON(fiber.Map{
+		"status": fiber.StatusOK,
+	})
+}
