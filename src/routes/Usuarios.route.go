@@ -10,6 +10,6 @@ func RoutesUsuarios(app *fiber.App) {
 
 	route.Get("/:id", controllers.Usuarios_GetOne)
 	route.Get("/", controllers.Usuarios_GetAll)
-	route.Put("/", controllers.Usuarios_Edit)
-	route.Delete("/", controllers.Usuarios_Delete)
+	route.Put("/:id", controllers.Usuarios_Edit)
+	route.Delete("/:id", controllers.Usuarios_Delete)
 }
