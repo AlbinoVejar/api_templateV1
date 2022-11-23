@@ -32,13 +32,14 @@ func Usuarios_Edit(context *fiber.Ctx) error {
 	db := config.Connection()
 	var usuario models.Usuario
 	context.BodyParser(&usuario)
-	db.Raw("UPDATE Usuarios SET nombre = (?), apellidos = (?), direccion = (?), ciudad = (?), estado = (?), cp = (?) WHERE id = (?)",
+	db.Raw("UPDATE Usuarios SET nombre = (?), apellidos = (?), direccion = (?), ciudad = (?), estado = (?), cp = (?), FechaNacimiento = (?) WHERE id = (?)",
 		usuario.Nombre,
 		usuario.Apellidos,
 		usuario.Direccion,
 		usuario.Ciudad,
 		usuario.Estado,
 		usuario.Cp,
+		usuario.FechaNacimiento,
 		id).Scan(&usuario.Id)
 	return context.JSON(fiber.Map{
 		"data":   usuario,
@@ -59,7 +60,7 @@ func Usuarios_Add(context *fiber.Ctx) error {
 	db := config.Connection()
 	var usuario models.Usuario
 	context.BodyParser(&usuario)
-	db.Exec("INSERT INTO Usuario(Nombre, Apellidos, Direccion, Ciudad, Estado, Cp, FechaNacimiento) VALUES(?,?,?,?,?,?,?)",
+	db.Exec("INSERT INTO Usuarios(nombre, apellidos, direccion, ciudad, estado, cp, fechaNacimiento) VALUES(?,?,?,?,?,?,?)",
 		usuario.Nombre,
 		usuario.Apellidos,
 		usuario.Direccion,
